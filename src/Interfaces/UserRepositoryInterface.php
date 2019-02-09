@@ -16,5 +16,5 @@ interface UserRepositoryInterface
      *
      * @return User[]
      */
-    public function getUsers($limit, $offset, $filter): array;
+    public function getUsers($limit = null, $offset = null, $filter = []): array;
 }

@@ -21,6 +21,12 @@ $containerBuilder->setAlias(
 );
 
 //User loaders
+$containerBuilder->autowire(UserListRest\Components\UserCSVLoader::class);
+$containerBuilder->setAlias(
+    UserListRest\Interfaces\UserLoaderInterface::class,
+    UserListRest\Components\UserCSVLoader::class
+//    UserListRest\Components\UserJsonLoader::class
+);
 
 //Response handler
 $containerBuilder->autowire(UserListRest\Components\JsonResponse::class);

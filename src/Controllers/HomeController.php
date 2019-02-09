@@ -2,10 +2,20 @@
 
 namespace UserListRest\Controllers;
 
-class HomeController extends BaseController
+use UserListRest\Interfaces\ResponseInterface;
+
+class HomeController
 {
+    /** @var ResponseInterface*/
+    private $responseHandler;
+
+    public function __construct(ResponseInterface $responseHandler)
+    {
+        $this->responseHandler = $responseHandler;
+    }
+
     public function index()
     {
-        $this->responseHandler->fail('test');
+        $this->responseHandler->success(['msg' => 'Api works']);
     }
 }
