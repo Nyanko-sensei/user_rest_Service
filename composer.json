@@ -1,0 +1,16 @@
+{
+    "name": "nyanko-sensei/urest",
+    "type": "project",
+    "require": {
+        "symfony/dependency-injection": "^4.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7"
+    },
+    "authors": [
+        {
+            "name": "Gediminas Radzevicius",
+            "email": "radzeviciusgediminas@gmail.com"
+        }
+    ]
+}
