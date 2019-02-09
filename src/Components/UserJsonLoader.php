@@ -10,7 +10,7 @@ class UserJsonLoader implements UserLoaderInterface
     const PATH_TO_FILE = '../data/testtakers.json';
 
     /** @var  User[] */
-    private $users;
+    private $users = [];
 
     /** @var  string */
     private $path;
@@ -30,9 +30,26 @@ class UserJsonLoader implements UserLoaderInterface
      */
     public function loadUsersFromSource(): array
     {
-        $user = new User();
+        if (file_exists($this->path)) {
+            $string = file_get_contents($this->path);
+            $users = json_decode($string, true);
 
-        $this->users[] = $user;
+            foreach ($users as $userDataArray) {
+                $user = new User();
+
+                $user->setLogin($userDataArray['login'] ?? null);
+                $user->setPassword($userDataArray['password'] ?? null);
+                $user->setTitle($userDataArray['title'] ?? null);
+                $user->setLastname($userDataArray['lastname' ?? null]);
+                $user->setFirstname($userDataArray['firstname'] ?? null);
+                $user->setGender($userDataArray['gender'] ?? null);
+                $user->setEmail($userDataArray['email'] ?? null);
+                $user->setPicture($userDataArray['picture'] ?? null);
+                $user->setAddress($userDataArray['address'] ?? null);
+
+                $this->users[] = $user;
+            }
+        }
 
         return $this->users;
     }

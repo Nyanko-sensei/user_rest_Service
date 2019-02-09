@@ -3,21 +3,49 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use UserListRest\Components\UserCSVLoader;
+use UserListRest\Components\UserJsonLoader;
 use UserListRest\Models\User;
 
-final class  CSVLoaderTest extends TestCase
+final class  JsonLoaderTest extends TestCase
 {
     /**
+     * @group sp
+     *
      * @test
      */
-    public function canGetUsersFromCSV(): void
+    public function canGetUsersFromJson(): void
     {
-        file_put_contents('test.csv', "login,password,title,lastname,firstname,gender,email,picture,address\n");
-        file_put_contents('test.csv', "login1,password1,mrs,foster,abigail,female,example1@example.com,https://api.randomuser.me/0.2/portraits/women/10.jpg,1851 saddle dr anna 69319\n", FILE_APPEND);
-        file_put_contents('test.csv', "login2,password2,ms,graham,allison,female,example2@example.com,https://api.randomuser.me/0.2/portraits/women/35.jpg,6697 rolling green rd colorado springs 56306\n", FILE_APPEND);
+        $payload = [
+            [
+                'login' => 'login1',
+                'password' => 'password1',
+                'title' => 'mrs',
+                'lastname' => 'foster',
+                'firstname' => 'abigail',
+                'gender' => 'female',
+                'email' => 'example1@example.com',
+                'picture' => 'https://api.randomuser.me/0.2/portraits/women/10.jpg',
+                'address' =>'1851 saddle dr anna 69319',
+            ],
+            [
+                'login' => 'login2',
+                'password' => 'password2',
+                'title' => 'ms',
+                'lastname' => 'graham',
+                'firstname' => 'allison',
+                'gender' => 'female',
+                'email' => 'example2@example.com',
+                'picture' => 'https://api.randomuser.me/0.2/portraits/women/35.jpg',
+                'address' => '6697 rolling green rd colorado springs 56306',
+            ],
+        ];
 
-        $csvLoader = new UserCSVLoader('test.csv');
+
+        $fp = fopen('test.json', 'w');
+        fwrite($fp, json_encode($payload));
+        fclose($fp);
+
+        $csvLoader = new UserJsonLoader('test.json');
         /** @var User[] $users */
         $users = $csvLoader->loadUsersFromSource();
 
@@ -44,6 +72,6 @@ final class  CSVLoaderTest extends TestCase
         $this->assertEquals("https://api.randomuser.me/0.2/portraits/women/35.jpg", $user2->getPicture());
         $this->assertEquals("6697 rolling green rd colorado springs 56306", $user2->getAddress());
 
-        unlink('test.csv');
+        unlink('test.json');
     }
 }

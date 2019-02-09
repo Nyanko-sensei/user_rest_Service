@@ -22,10 +22,11 @@ $containerBuilder->setAlias(
 
 //User loaders
 $containerBuilder->autowire(UserListRest\Components\UserCSVLoader::class);
+$containerBuilder->autowire(UserListRest\Components\UserJsonLoader::class);
 $containerBuilder->setAlias(
     UserListRest\Interfaces\UserLoaderInterface::class,
-    UserListRest\Components\UserCSVLoader::class
-//    UserListRest\Components\UserJsonLoader::class
+//    UserListRest\Components\UserCSVLoader::class
+    UserListRest\Components\UserJsonLoader::class
 );
 
 //Response handler
