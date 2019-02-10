@@ -76,39 +76,39 @@ class UserCSVLoader implements UserLoaderInterface
         $user->setUserId($id);
 
         if (isset($this->headers['login'])) {
-            $user->setLogin($line[$this->headers['login']]);
+            $user->setLogin($line[$this->headers['login']] ?? null);
         }
 
         if (isset($this->headers['password'])) {
-            $user->setPassword($line[$this->headers['password']]);
+            $user->setPassword($line[$this->headers['password']] ?? null);
         }
 
         if (isset($this->headers['title'])) {
-            $user->setTitle($line[$this->headers['title']]);
+            $user->setTitle($line[$this->headers['title']] ?? null);
         }
 
         if (isset($this->headers['lastname'])) {
-            $user->setLastname($line[$this->headers['lastname']]);
+            $user->setLastname($line[$this->headers['lastname']] ?? null);
         }
 
         if (isset($this->headers['firstname'])) {
-            $user->setFirstname($line[$this->headers['firstname']]);
+            $user->setFirstname($line[$this->headers['firstname']] ?? null);
         }
 
         if (isset($this->headers['gender'])) {
-            $user->setGender($line[$this->headers['gender']]);
+            $user->setGender($line[$this->headers['gender']] ?? null);
         }
 
         if (isset($this->headers['email'])) {
-            $user->setEmail($line[$this->headers['email']]);
+            $user->setEmail($line[$this->headers['email']] ?? null);
         }
 
         if (isset($this->headers['picture'])) {
-            $user->setPicture($line[$this->headers['picture']]);
+            $user->setPicture($line[$this->headers['picture']] ?? null);
         }
 
         if (isset($this->headers['address'])) {
-            $user->setAddress($line[$this->headers['address']]);
+            $user->setAddress($line[$this->headers['address']] ?? null);
         }
 
 
