@@ -7,7 +7,12 @@ use UserListRest\Models\User;
 
 interface UserRepositoryInterface
 {
-    public function getUserById(): User;
+    /**
+     * @param int $id
+     *
+     * @return User|null
+     */
+    public function getUserById(int $id);
 
     /**
      * @param $limit

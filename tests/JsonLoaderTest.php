@@ -9,7 +9,6 @@ use UserListRest\Models\User;
 final class  JsonLoaderTest extends TestCase
 {
     /**
-     * @group sp
      *
      * @test
      */
