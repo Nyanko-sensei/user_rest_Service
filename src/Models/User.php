@@ -4,6 +4,7 @@ namespace UserListRest\Models;
 
 class User
 {
+    private $userId;
     private $login;
     private $password;
     private $title;
@@ -157,5 +158,21 @@ class User
     public function setAddress($address)
     {
         $this->address = $address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param mixed $userId
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
     }
 }

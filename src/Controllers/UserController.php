@@ -20,9 +20,10 @@ class UserController
         $this->responseHandler = $responseHandler;
     }
 
-    public function show()
+    public function show($var)
     {
-        die("pika");
+        $user = $this->userRepository->getUserById($var['id']);
+        $this->responseHandler->success(UserTransformer::transform($user));
     }
 
     public function index()

@@ -34,9 +34,10 @@ class UserJsonLoader implements UserLoaderInterface
             $string = file_get_contents($this->path);
             $users = json_decode($string, true);
 
-            foreach ($users as $userDataArray) {
+            foreach ($users as $key => $userDataArray) {
                 $user = new User();
 
+                $user->setUserId($key+1);
                 $user->setLogin($userDataArray['login'] ?? null);
                 $user->setPassword($userDataArray['password'] ?? null);
                 $user->setTitle($userDataArray['title'] ?? null);

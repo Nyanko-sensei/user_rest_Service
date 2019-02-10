@@ -37,6 +37,7 @@ class JsonResponse implements ResponseInterface
 
     private function init()
     {
+        header("Access-Control-Allow-Origin: *");
         header('Content-Type: application/json');
     }
 }

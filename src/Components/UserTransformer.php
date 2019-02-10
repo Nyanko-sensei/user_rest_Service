@@ -10,6 +10,7 @@ class UserTransformer
    static function transform(User  $user)
    {
        return [
+           'userId' => $user->getUserId(),
            'login' => $user->getLogin(),
            'password' => $user->getPassword(),
            'title' => $user->getTitle(),

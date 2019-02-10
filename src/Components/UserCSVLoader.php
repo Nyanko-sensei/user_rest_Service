@@ -38,12 +38,15 @@ class UserCSVLoader implements UserLoaderInterface
 
             $this->loadHeaders($file);
 
+            $i = 1;
+
             while (! feof($file)) {
 
                 $line = fgetcsv($file);
-                if ($line) {
 
-                    $this->processLine($line);
+                if ($line) {
+                    $this->processLine($line, $i);
+                    $i++;
                 };
             }
 
@@ -66,9 +69,11 @@ class UserCSVLoader implements UserLoaderInterface
     /**
      * @param $line
      */
-    private function processLine($line): void
+    private function processLine($line, $id): void
     {
         $user = new User();
+
+        $user->setUserId($id);
 
         if (isset($this->headers['login'])) {
             $user->setLogin($line[$this->headers['login']]);
